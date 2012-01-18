@@ -16,6 +16,10 @@ class ContentController extends F_Controller {
 	}
 	
 	public function indexHandler() {
-	
+		$this->view->set_vars ( array () );
+		$this->view->add_template ( 'Content.index.tpl.php' );
+		$this->main_contents = $this->view->render ();
+		
+		$this->display_admin_template ();
 	}
 }

@@ -3,7 +3,7 @@ IndexIgnore */*
 # Turn on the RewriteEngine
 RewriteEngine On
 #  Rules
-RewriteBase /active/Repo/1/admin
+RewriteBase /active/store1212/2/admin
 RewriteCond %{REQUEST_URI} !\.css$
 RewriteCond %{REQUEST_URI} !\.png$
 RewriteCond %{REQUEST_URI} !\.js$
