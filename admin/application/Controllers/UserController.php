@@ -98,5 +98,15 @@ class UserController extends F_Controller {
 		Authentication::getInstance ()->reload_user_data ( $user_id );
 		var_dump ( Authentication::getInstance ()->get_user_data () );
 	}
+	
+	public function allHandler() {
+		$users = $this->db->select('*')->from('users')->fetch_object();
+		
+		$this->view->set_vars ( array ("users" => $users) );
+		$this->view->add_template ( 'User.all.tpl.php' );
+		$this->main_contents = $this->view->render ();
+		
+		$this->display_admin_template ();
+	}
 
 }

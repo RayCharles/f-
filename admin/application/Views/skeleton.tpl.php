@@ -156,6 +156,7 @@ $user = $auth->get_user_data ();
 			<li class="i_user"><a class="<?= $UserController;?>"><span><?= ucwords($lang['user']);?></span></a>
 				<ul>
 					<li><a href="<?=site_url();?>/admin/User/Index"><span><?= $user[0]->DisplayName;?></span></a></li>
+					<li><a href="<?=site_url();?>/admin/User/all"><span><?= ucwords($lang['users']);?></span></a></li>
 				</ul></li>
 		</ul>
 	</nav>

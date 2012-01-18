@@ -16,8 +16,7 @@ class SettingsController extends F_Controller {
 	}
 	
 	public function indexHandler() {
-		$settings = new Settings ();
-		$this->view->set_vars ( array ('_settings' => $settings->get_all () ) );
+		$this->view->set_vars ( array ('_settings' => Settings::get_all () ) );
 		
 		$this->view->add_template ( 'Settings.index.tpl.php' );
 		$this->main_contents = $this->view->render ();
@@ -32,9 +31,8 @@ class SettingsController extends F_Controller {
 			
 			if ($this->input->server ( 'HTTP_X_REQUESTED_WITH' )) { // Only via
 			                                                        // ajax
-				$settings = new Settings ();
 				foreach ( $this->input->post () as $setting => $value ) {
-					$settings->update ( $setting, $value );
+					Settings::update ( $setting, $value );
 				}
 			} else {
 				echo 'This page is only via ajax accessable! Fuck yeah!';

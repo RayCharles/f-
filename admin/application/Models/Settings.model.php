@@ -1,26 +1,27 @@
 <?php
 class Settings extends Model {
 	
-	protected function insert($setting, $value) {
+	static public function insert($setting, $value) {
 	
 	}
 	
-	protected function get($setting) {
-	
+	static public function get($setting) {
+		$setting = X_Base::getInstance ()->select ( '*' )->from ( 'settings' )->where ( array ("setting" => "$setting" ) )->fetch_object ();
+		return $setting [0]->value;
 	}
 	
-	public function update($setting, $value) {
+	static public function update($setting, $value) {
 		$sql = "REPLACE INTO `settings` SET setting = '$setting', value= '$value'";
 		$this->db->sql ( $sql )->execute ();
 		$this->db->sql ( "ALTER TABLE `settings` AUTO_INCREMENT = 1" )->execute ();
 	}
 	
-	protected function delete($setting) {
+	static public function delete($setting) {
 	
 	}
 	
-	public function get_all() {
-		$settings_object = $this->db->select ( '*' )->from ( 'settings' )->fetch_object ();
+	static public function get_all() {
+		$settings_object = X_Base::getInstance ()->select ( '*' )->from ( 'settings' )->fetch_object ();
 		
 		$settings = array ();
 		foreach ( $settings_object as $obj ) {

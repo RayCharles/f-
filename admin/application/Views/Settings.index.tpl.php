@@ -42,6 +42,14 @@
 				</div>
 			</section>
 			<section>
+				<label><?= ucfirst($lang['date_format']);?></label>
+				<div>
+					<input type="text" class="text" id="date_format" name="data_format"
+						value="<?= $_settings['date_format'];?>"
+						placeholder="<?= ucfirst($lang['date_format']);?>" />
+				</div>
+			</section>
+			<section>
 				<div>
 					<button><?= ucwords($lang['save']);?></button>
 				</div>
