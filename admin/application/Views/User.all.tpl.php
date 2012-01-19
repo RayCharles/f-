@@ -18,7 +18,7 @@
 				<td><?= ucwords($lang['username']);?></td>
 				<td><?= ucwords($lang['display_name']);?></td>
 				<td><?= ucwords($lang['email']);?></td>
-				<td><?= ucwords($lang['last_time_logged_in']);?></td>
+				<td><?= ucwords($lang['last_time_logged_in']);?></td><?//TODO: add links to edit pages?>
 				<td><?= ucwords($lang['user_status']);?></td>
 				<td><?= ucwords($lang['user_registered']);?></td>
 			</tr>

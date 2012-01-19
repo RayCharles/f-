@@ -9,14 +9,12 @@ class UserController extends F_Controller {
 		$this->init_language ();
 		$this->init_db ();
 		$this->init_input ();
-		
-		// Check whether current user is logged in
-		$auth = Authentication::getInstance ();
-		(! $auth->logged_in ()) ? redirect ( site_url () . '/admin/User/Login/' ) : NULL;
 	}
 	
 	public function indexHandler() {
 		$auth = Authentication::getInstance ();
+		(! $auth->logged_in ()) ? redirect ( site_url () . '/admin/User/Login/' ) : NULL;
+		
 		$user = $auth->get_user_data ();
 		$this->view->set_vars ( array ("_user" => $user [0] ) );
 		$this->view->add_template ( 'user.index.tpl.php' );
@@ -91,18 +89,16 @@ class UserController extends F_Controller {
 		$user = new User ();
 		$user->update ( $this->input->post ( 'user_id' ), $data );
 		
-		// Ändere userdaten die als cookie oder in der session gespeichert sind
-		// Authentication::getInstance()->login($user_data[0]->user_username,
-		// $data['user_password'], FALSE);
-		// reload user_data by user_id;
 		Authentication::getInstance ()->reload_user_data ( $user_id );
-		var_dump ( Authentication::getInstance ()->get_user_data () );
 	}
 	
 	public function allHandler() {
-		$users = $this->db->select('*')->from('users')->fetch_object();
+		$auth = Authentication::getInstance ();
+		(! $auth->logged_in ()) ? redirect ( site_url () . '/admin/User/Login/' ) : NULL;
 		
-		$this->view->set_vars ( array ("users" => $users) );
+		$users = $this->db->select ( '*' )->from ( 'users' )->fetch_object ();
+		
+		$this->view->set_vars ( array ("users" => $users ) );
 		$this->view->add_template ( 'User.all.tpl.php' );
 		$this->main_contents = $this->view->render ();
 		
