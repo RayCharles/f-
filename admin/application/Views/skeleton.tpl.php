@@ -10,13 +10,16 @@ $user = $auth->get_user_data ();
 <title><?=ucwords($language['administration']);?></title>
 
 <meta name="description" content="">
-<meta name="author" content="revaxarts.com">
+<meta name="author" content="RayCharles">
 
 
 <!-- Google Font and style definitions -->
 <link rel="stylesheet"
 	href="http://fonts.googleapis.com/css?family=PT+Sans:regular,bold">
+<link href='http://fonts.googleapis.com/css?family=Raleway:100|Jura:500'
+	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<?=$assets;?>/css/style.css">
+<link rel="stylesheet" href="<?=$assets;?>/css/custom_style.css">
 
 <!-- include the skins (change to dark if you like) -->
 <link rel="stylesheet" href="<?=$assets;?>/css/light/theme.css"
@@ -144,6 +147,7 @@ $user = $auth->get_user_data ();
 			<li class="i_list_images"><a class="<?= $ContentController;?>"><span><?= ucwords($lang['contents'])?></span></a>
 				<ul>
 					<li><a href="<?=site_url();?>/admin/Content/Index"><span><?= ucwords($lang['display_all_contents']);?></span></a></li>
+					<li><a href="<?=site_url();?>/admin/Content/Add"><span><?= ucwords($lang['add_contents']);?></span></a></li>
 				</ul></li>
 			<li class="i_book"><a><span>Documentation</span></a>
 				<ul>

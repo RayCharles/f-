@@ -5,7 +5,7 @@ class User extends Model {
 	
 	}
 	
-	protected function get($user_id) {
+	static public function get($user_id) {
 		$db = X_Base::getInstance ();
 		$user = $db->select ( '*' )->from ( 'users' )->where ( array ('user_id' => $user_id ) )->fetch_object ();
 		return $user [0];

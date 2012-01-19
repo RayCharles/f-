@@ -2,7 +2,7 @@
 /* This is the styling of the html container
 /*----------------------------------------------------------------------*/
 @import 'http://fonts.googleapis.com/css?family=PT+Sans:regular,bold';
-
+@import 'http://fonts.googleapis.com/css?family=Raleway:100|Jura:500';
 /*----------------------------------------------------------------------*/
 /* Reset
 /*----------------------------------------------------------------------*/
@@ -27,7 +27,8 @@ html,body,div,span,applet,object,iframe,input,h1,h2,h3,h4,h5,h6,p,blockquote,pre
 /* Font Declaration
 /*----------------------------------------------------------------------*/
 html {
-	font-family: 'PT Sans', sans-serif;
+	/*  font-family: 'PT Sans', sans-serif;*/
+	font-family: 'Jura';
 }
 
 code,pre {

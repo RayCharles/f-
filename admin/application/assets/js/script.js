@@ -43,7 +43,7 @@ $(document).ready(function() {
 		//Elastic textareas (autogrow)
 		$content.find('textarea[data-autogrow]').elastic();
 		//WYSIWYG Editor
-		$content.find('textarea.html').wl_Editor();
+		$content.find('textarea.html').wl_Editor({maxHeight: 100});
 		
 		//Validation
 		$content.find('input[data-regex]').wl_Valid();

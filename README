@@ -39,14 +39,22 @@ CREATE TABLE `users` (
 <b>Content type</b>
 0: Simple post
 1: Post to thread (relation with Thread) (not implemented)
-2: Thread (relation with Topic) (not implemented)
+2: Thread (relation with Topic) (can have under/over threads) (not implemented)
 3: Topic
 
 <b>Content statuses</b>
 0: Published, visible, public
-1: Published, visible, private
-2: Pending approval (added by < Editor)
-3: n. Published
-4: checked out (currently being edited)
-5: pending go live date (not implemented)
-6: SPAM
+1: Pending approval (added by < Editor)
+2: n. Published
+3: checked out (currently being edited)
+4: pending go live date (not implemented)
+5: SPAM
+
+*Content visibility*
+If a password is set, then the content is password-protected.
+If there is a number 1, then the content is public.
+If there is number 0, then the content is private.
+
+*Category type*
+1: Category
+2: Tag
