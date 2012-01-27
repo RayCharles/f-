@@ -1,0 +1,19 @@
+@CHARSET "ISO-8859-1";
+
+blockquote.custom {
+	font-size: 16px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+	border-left: 5px solid;
+	padding: 0 10px;
+	margin: 10px;
+}
+
+.g1.custom,.g2.custom,.g3.custom,.g4.custom,.g5.custom,.g6.custom,.g7.custom,.g8.custom,.g9.custom,.g10.custom,.g11.custom,.g12.custom {
+	display: inline;
+	float: left;
+	margin-left: 1%;
+	margin-right: 1%;
+	padding: 0 0;
+	padding-bottom: 5px;
+}

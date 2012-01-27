@@ -704,7 +704,7 @@ nav ul li ul li a:active span,nav ul li ul li a.active span {
 	border: 0;
 	padding: 15px 5px 15px 230px;
 	margin: 0;
-	max-height: 600px;
+	min-height: 600px;
 	border: 1px solid;
 	overflow: visible;
 	-webkit-border-bottom-left-radius: 4px;
@@ -2139,7 +2139,7 @@ footer {
 }
 
 .g12 {
-	width: 100%;
+	width: 98.0%;
 }
 
 .p1 {

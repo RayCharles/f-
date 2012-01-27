@@ -32,4 +32,22 @@ class ContentController extends F_Controller {
 		
 		$this->display_admin_template ();
 	}
+	
+	public function addContentAJAXHandler() {
+		if ($this->input->post ()) {
+			$post = $this->input->make_db_ready ( $this->input->post () );
+				
+			if ($this->input->server ( 'HTTP_X_REQUESTED_WITH' )) { // Only via
+				// ajax
+				foreach ( $this->input->post () as $setting => $value ) {
+					
+				}
+				echo "Success";
+			} else {
+				echo 'This page is only via ajax accessable! Fuck yeah!';
+			}
+		} else {
+			return false;
+		}
+	}
 }

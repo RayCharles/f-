@@ -79,7 +79,7 @@ $.fn.wl_Editor = function (method) {
 };
 
 $.fn.wl_Editor.defaults = {
-	css: 'css/light/editor.css',
+	css: '../application/assets/css/light/editor.css',
 	buttons: 'bold|italic|underline|strikeThrough|justifyLeft|justifyCenter|justifyRight|justifyFull|highlight|indent|outdent|subscript|superscript|undo|redo|insertOrderedList|insertUnorderedList|insertHorizontalRule|createLink|insertImage|h1|h2|h3|h4|h5|h6|paragraph|rtl|ltr|cut|copy|paste|increaseFontSize|decreaseFontSize|html|code|removeFormat|insertTable',
 	initialContent: ""
 };
