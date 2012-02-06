@@ -35,8 +35,8 @@
 					<label><?=ucwords($lang['categories']);?></label>
 					<div>
 						<? foreach(Functions::get_all_cats() as $cat) :?>
-						<input type="checkbox" class="checkbox" id="<?= $cat->slug;?>"
-							name="<?= $cat->slug;?>" value="<?= $cat->idCategories;?>"> <span><?= $cat->Name;?></span>
+						<input type="checkbox" class="checkbox" id="<?= $cat->Slug;?>"
+							name="<?= $cat->Slug;?>" value="<?= $cat->idCategories;?>"> <span><?= $cat->Name;?></span>
 						<? endforeach;?>
 					</div>
 					<a href="#" id="add_category">+<?=ucwords($lang['add_a_cat']);?></a>
@@ -88,6 +88,7 @@ $(document).ready(function() {
 				console.log(data);
 			};
 			$.msg(data);
+			alert(data);
 		},
 		onError: function(status, error, jqXHR){
 			$.msg("Callback on Error\nError Status: "+status+"\nError Msg: "+error);

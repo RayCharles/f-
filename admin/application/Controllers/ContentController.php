@@ -42,7 +42,7 @@ class ContentController extends F_Controller {
 				foreach ( $this->input->post () as $setting => $value ) {
 					
 				}
-				echo "Success";
+				echo "<pre>" . var_dump($this->input->post()) . "</pre>";
 			} else {
 				echo 'This page is only via ajax accessable! Fuck yeah!';
 			}
