@@ -1,9 +1,8 @@
 
-<div class="g12">
 	<form action="<?= site_url();?>/admin/User/saveUserAJAX/" method="POST"
-		autocomplete="off" id="settings_form">
+		id="settings_form">
 		<fieldset>
-			<label><?= ucwords($lang['user']);?> <?= ucwords($lang['settings']);?></label>
+			<legend><label><?= ucwords($lang['user']);?> <?= ucwords($lang['settings']);?></label></legend>
 			<section>
 				<label><?= ucwords($language['user']);?> <?= ucwords($language['displayname']);?></label>
 				<div>
@@ -43,20 +42,3 @@
 			</section>
 		</fieldset>
 	</form>
-</div>
-<script>
-		$(document).ready(function() {
-			$('#settings_form').wl_Form({
-				onSuccess: function(data, status){
-					if(window.console){
-						console.log(status);
-						console.log(data);
-					};
-					$.msg(data);
-				},
-				onError: function(status, error, jqXHR){
-					$.msg("Callback on Error\nError Status: "+status+"\nError Msg: "+error);
-				}
-			});
-		})
-		</script>

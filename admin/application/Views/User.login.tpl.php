@@ -11,24 +11,9 @@
 <!-- Apple iOS and Android stuff -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="apple-touch-icon-precomposed" href="img/icon.png">
-<link rel="apple-touch-startup-image" href="img/startup.png">
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
 
-<!-- Google Font and style definitions -->
-<link rel="stylesheet"
-	href="http://fonts.googleapis.com/css?family=PT+Sans:regular,bold">
-<link rel="stylesheet" href="<?=$assets;?>/css/style.css">
-
-<!-- include the skins (change to dark if you like) -->
-<link rel="stylesheet" href="<?=$assets;?>/css/light/theme.css"
-	class="theme">
-
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<link rel="stylesheet" href="css/ie.css">
-	<![endif]-->
 
 <!-- Use Google CDN for jQuery and jQuery UI -->
 <script
@@ -36,24 +21,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
 
-<!-- Loading JS Files this way is not recommended! Merge them but keep their order -->
-
-<!-- some basic functions -->
-<script src="<?=$assets;?>/js/functions.js"></script>
-
-<!-- all Third Party Plugins -->
-<script src="<?=$assets;?>/js/plugins.js"></script>
-
-<!-- Whitelabel Plugins -->
-<script src="<?=$assets;?>/js/wl_Alert.js"></script>
-<script src="<?=$assets;?>/js/wl_Dialog.js"></script>
-<script src="<?=$assets;?>/js/wl_Form.js"></script>
-
-<!-- configuration to overwrite settings -->
-<script src="<?=$assets;?>/js/config.js"></script>
-
-<!-- the script which handles all the access to plugins etc... -->
-<script src="<?=$assets;?>/js/login.js"></script>
 </head>
 <body id="login">
 	<header>
@@ -63,7 +30,7 @@
 	</header>
 	<section id="content">
 		<form action="<?=site_url();?>/admin/User/submit/" id="loginform"
-			data-ajax="false" method="post">
+			method="post">
 			<fieldset>
 				<section>
 					<label for="username"><?=ucwords($lang['username']);?></label>

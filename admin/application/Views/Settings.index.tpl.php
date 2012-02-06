@@ -1,7 +1,5 @@
-
-<div class="g12">
 	<form action="<?= site_url();?>/admin/Settings/saveAJAX/" method="POST"
-		autocomplete="off" id="settings_form">
+		id="settings_form">
 		<fieldset>
 			<label><?= ucwords($lang['general']);?> <?= ucwords($lang['settings']);?></label>
 			<section>
@@ -56,24 +54,4 @@
 			</section>
 		</fieldset>
 	</form>
-</div>
-<script>
-		$("#new_user_role option[value='<?= $_settings['new_user_role'];?>']").attr("selected", "selected");
-		if (<?= $_settings['allowed_to_register']?>) { 
-			$('#allowed_to_register').attr("checked", "checked");
-		}
-		$(document).ready(function() {
-			$('#settings_form').wl_Form({
-				onSuccess: function(data, status){
-					if(window.console){
-						console.log(status);
-						console.log(data);
-					};
-					$.msg(data);
-				},
-				onError: function(status, error, jqXHR){
-					$.msg("Callback on Error\nError Status: "+status+"\nError Msg: "+error);
-				}
-			});
-		})
-		</script>
+
