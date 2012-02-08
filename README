@@ -51,7 +51,7 @@ CREATE TABLE `users` (
 5: SPAM
 
 *Content visibility*
-If a password is set, then the content is password-protected.
+If there is a number 2, then the content is password-protected. (By password of the current user) only admin(1) can see it.
 If there is a number 1, then the content is public.
 If there is number 0, then the content is private.
 

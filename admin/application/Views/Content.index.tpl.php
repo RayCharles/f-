@@ -41,7 +41,7 @@
 				<td><?= date(Settings::get('date_format'), $content->content_published);?></td>
 				<td><?= ucwords($lang[Functions::content_status($content->content_status)]);?></td>
 				<td><?= ucwords($lang[Functions::content_type($content->content_type)]);?></td>
-				<td><?= $content->content_comments;?> "<?= $content->content_password; //@todo: implement icons?>"</td>
+				<td><?= $content->content_comments;?> "<?= $content->content_visibility; //@todo: implement icons?>"</td>
 			</tr>
 			<? endforeach;?>
 		</tbody>

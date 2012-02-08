@@ -39,11 +39,11 @@ class ContentController extends F_Controller {
 			$contents = array ();
 			
 			if (isset ( $post ['tags'] )) {
-				$contents [] = $post ['tags'];
+				$contents ['tags'] = $post ['tags'];
 				unset ( $post ['tags'] );
 			}
 			if (isset ( $post ['cats'] )) {
-				$contents [] = $post ['cats'];
+				$contents ['cats'] = $post ['cats'];
 				unset ( $post ['cats'] );
 			}
 			if (isset ( $post ['tags__ptags'] )) {
@@ -54,11 +54,35 @@ class ContentController extends F_Controller {
 			$post ['content_edited'] = time ();
 			
 			if ($this->input->server ( 'HTTP_X_REQUESTED_WITH' )) {
-				$this->db->insert_into ( 'contents', $post )->execute ();
+				$execute = $this->db->insert_into ( 'contents', $post )->execute ();
 				$post_id = $this->db->last_insert_id ();
+				// $post_id = 1;
 				// Insert cats and tags
-				
+				if (isset ( $contents ['tags'] ) and ! empty ( $contents ['tags'] )) {
+					Functions::process_tags ( $contents ['tags'], $post_id );
+				}
+				if (isset ( $contents ['cats'] ) and ! empty ( $contents ['cats'] )) {
+					Functions::process_cats ( $contents ['cats'], $post_id );
+				}
+				// TODO: save post settings
 				echo $post_id;
+			} else {
+				echo 'This page is only via ajax accessable! Fuck yeah!';
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	public function newCatHandler() {
+		if ($this->input->get ()) {
+			$post = $this->input->make_db_ready ( $this->input->get () );
+			if ($this->input->server ( 'HTTP_X_REQUESTED_WITH' )) {
+				$post['Slug'] = Functions::slug($post['Name']);
+				$post['Type'] = 1;
+				$this->db->insert_into('categories', $post)->execute();
+				$r = $this->db->select('*')->from('categories')->where(array('idCategories' => $this->db->last_insert_id()))->fetch_object();
+				echo json_encode($r[0]);
 			} else {
 				echo 'This page is only via ajax accessable! Fuck yeah!';
 			}
