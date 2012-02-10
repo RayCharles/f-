@@ -159,6 +159,44 @@ class X_Base {
 		return $this;
 	}
 	
+	public function insert_ignore_into($table, $data) {
+		$this->table = $table;
+		$table = "`$table`";
+	
+		$fields = "";
+		$values = "";
+		foreach ( $data as $key => $value ) {
+			$fields .= "`$key`,";
+			$values .= "'$value',";
+		}
+	
+		$fields = substr ( $fields, 0, - 1 );
+		$values = substr ( $values, 0, - 1 );
+	
+		$this->query = "INSERT IGNORE INTO $table ($fields) VALUES ($values)";
+	
+		return $this;
+	}
+	
+	public function replace_into($table, $data) {
+		$this->table = $table;
+		$table = "`$table`";
+	
+		$fields = "";
+		$values = "";
+		foreach ( $data as $key => $value ) {
+			$fields .= "`$key`,";
+			$values .= "'$value',";
+		}
+	
+		$fields = substr ( $fields, 0, - 1 );
+		$values = substr ( $values, 0, - 1 );
+	
+		$this->query = "REPLACE INTO $table ($fields) VALUES ($values)";
+	
+		return $this;
+	}
+	
 	public function update($table, $data) {
 		$this->table = $table;
 		$table = "`$table`";

@@ -33,7 +33,7 @@
 			<? foreach ($contents as $content) :?>
 			<? $user = User::get($content->content_author);?>
 			<tr>
-				<td><?= $content->content_title;?></td>
+				<td><a href="<?= site_url();?>/admin/Content/edit/<?= $content->content_id;?>"><?= $content->content_title;?></a></td>
 				<td><?= Functions::shorten($content->content);?></td>
 				<td><?= $user->DisplayName;?></td>
 				<td><?= date(Settings::get('date_format'), $content->content_edited);?></td>
@@ -41,7 +41,7 @@
 				<td><?= date(Settings::get('date_format'), $content->content_published);?></td>
 				<td><?= ucwords($lang[Functions::content_status($content->content_status)]);?></td>
 				<td><?= ucwords($lang[Functions::content_type($content->content_type)]);?></td>
-				<td><?= $content->content_comments;?> "<?= $content->content_visibility; //@todo: implement icons?>"</td>
+				<td>cmnts: <?= $content->content_comments;?>, vsb:"<?= $content->content_visibility; //@todo: implement icons?>" ftrd: "<?= $content->content_featured;?>"</td>
 			</tr>
 			<? endforeach;?>
 		</tbody>

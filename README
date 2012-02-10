@@ -51,10 +51,19 @@ CREATE TABLE `users` (
 5: SPAM
 
 *Content visibility*
+If there is a number 0, then the content is public.
+If there is number 1, then the content is private.
 If there is a number 2, then the content is password-protected. (By password of the current user) only admin(1) can see it.
-If there is a number 1, then the content is public.
-If there is number 0, then the content is private.
 
 *Category type*
 1: Category
 2: Tag
+
+*Content featured*
+0: Not featured
+1: Featured (Only latest 5(default, user can define less or more) featured articles will be displayed as featured, so there's no need to removed old contents from featured list)
+
+PLUGINS
+Pine Tags: http://pinesframework.org/ptags/
+Form: http://jquery.malsup.com/form/
+Notification: http://pinesframework.org/pnotify/

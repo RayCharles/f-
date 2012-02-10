@@ -78,3 +78,5 @@ $lang ['add_a_cat'] = 'add a category';
 $lang ['new_cat'] = 'new category';
 $lang ['save_a_cat'] = 'save category';
 $lang ['cancel'] = 'cancel';
+$lang ['featured'] = 'featured';
+$lang ['edit_contents'] = 'edit contents';

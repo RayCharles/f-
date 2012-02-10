@@ -33,6 +33,16 @@ class ContentController extends F_Controller {
 		$this->display_admin_template ();
 	}
 	
+	public function editHandler($id) {
+		$post = $this->db->select ( '*' )->from ( 'contents' )->where ( array ('content_id' => $id ) )->fetch_object ();
+		$tags = $this->db->sql ( "SELECT categories.* FROM categories, content_categories WHERE content_categories.idContent = '$id' AND content_categories.idCategories = categories.idCategories" )->fetch_object ();
+		$this->view->set_vars ( array ("post" => $post [0], "slugs" => $tags ) );
+		$this->view->add_template ( 'Content.edit.tpl.php' );
+		$this->main_contents = $this->view->render ();
+		
+		$this->display_admin_template ();
+	}
+	
 	public function addContentAJAXHandler() {
 		if ($this->input->post ()) {
 			$post = $this->input->make_db_ready ( $this->input->post () );
@@ -64,7 +74,6 @@ class ContentController extends F_Controller {
 				if (isset ( $contents ['cats'] ) and ! empty ( $contents ['cats'] )) {
 					Functions::process_cats ( $contents ['cats'], $post_id );
 				}
-				// TODO: save post settings
 				echo $post_id;
 			} else {
 				echo 'This page is only via ajax accessable! Fuck yeah!';
@@ -78,11 +87,50 @@ class ContentController extends F_Controller {
 		if ($this->input->get ()) {
 			$post = $this->input->make_db_ready ( $this->input->get () );
 			if ($this->input->server ( 'HTTP_X_REQUESTED_WITH' )) {
-				$post['Slug'] = Functions::slug($post['Name']);
-				$post['Type'] = 1;
-				$this->db->insert_into('categories', $post)->execute();
-				$r = $this->db->select('*')->from('categories')->where(array('idCategories' => $this->db->last_insert_id()))->fetch_object();
-				echo json_encode($r[0]);
+				$post ['Slug'] = Functions::slug ( $post ['Name'] );
+				$post ['Type'] = 1;
+				$this->db->insert_ignore_into ( 'categories', $post )->execute ();
+				$r = $this->db->select ( '*' )->from ( 'categories' )->where ( array ('idCategories' => $this->db->last_insert_id () ) )->fetch_object ();
+				echo json_encode ( $r [0] );
+			} else {
+				echo 'This page is only via ajax accessable! Fuck yeah!';
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	public function editContentAJAXHandler($id) {
+		if ($this->input->post ()) {
+			$post = $this->input->make_db_ready ( $this->input->post () );
+			$contents = array ();
+			
+			if (isset ( $post ['tags'] )) {
+				$contents ['tags'] = $post ['tags'];
+				unset ( $post ['tags'] );
+			}
+			if (isset ( $post ['cats'] )) {
+				$contents ['cats'] = $post ['cats'];
+				unset ( $post ['cats'] );
+			}
+			if (isset ( $post ['tags__ptags'] )) {
+				unset ( $post ['tags__ptags'] );
+			}
+			//$post ['content_published'] = time ();
+			$post ['content_edited'] = time ();
+			
+			if ($this->input->server ( 'HTTP_X_REQUESTED_WITH' )) {
+				$execute = $this->db->update ( 'contents', $post )->where(array("content_id" => $id))->execute ();
+				// $post_id = 1;
+				// Insert cats and tags
+				Functions::remove_relations($id);
+				if (isset ( $contents ['tags'] ) and ! empty ( $contents ['tags'] )) {
+					Functions::process_tags ( $contents ['tags'], $id );
+				}
+				if (isset ( $contents ['cats'] ) and ! empty ( $contents ['cats'] )) {
+					Functions::process_cats ( $contents ['cats'], $id );
+				}
+				echo $id;
 			} else {
 				echo 'This page is only via ajax accessable! Fuck yeah!';
 			}

@@ -43,29 +43,41 @@ class Functions {
 		return $opts;
 	}
 	
-	static function get_all_cats() {
-		$cats = X_Base::getInstance ()->select ( '*' )->from ( 'categories' )->where ( array ('Type' => 1 ) )->fetch_object ();
+	static function get_all_cats($not = "") {
+		$str = "";
+		if ($not != "") {
+			$str = " AND";
+			foreach ( $not as $cat ) {
+				$str .= " idCategories <> $cat AND ";
+			}
+			$str = substr ( $str, 0, - 4 );
+		}
+		$cats = X_Base::getInstance ()->select ( '*' )->from ( 'categories' )->where ( "Type = '1'$str" )->fetch_object ();
 		
 		return $cats;
+	}
+	
+	static function remove_relations($content_id) {
+		X_Base::getInstance()->delete_from('content_categories')->where(array('idContent' => $content_id))->execute();
 	}
 	
 	static function process_tags($tags, $content_id) {
 		$tags = explode ( ',', $tags );
 		foreach ( $tags as $tag ) {
-			$id = X_Base::getInstance ()->select ( 'idCategories' )->from ( 'categories' )->where ( array ('Name' => $tag ) )->fetch_object ();
+			$id = X_Base::getInstance ()->select ( 'idCategories' )->from ( 'categories' )->where ( array ('Name' => $tag , "Type" => 2) )->fetch_object ();
 			if (! empty ( $id )) {
 				$if = $id [0]->idCategories;
-				X_Base::getInstance ()->insert_into ( 'content_categories', array ("idContent" => $content_id, "idCategories" => $if ) )->execute ();
+				X_Base::getInstance ()->insert_ignore_into ( 'content_categories', array ("idContent" => $content_id, "idCategories" => $if ) )->execute ();
 			} else {
-				X_Base::getInstance ()->insert_into ( 'categories', array ("Name" => $tag, "Slug" => Functions::slug ( $tag ), "Type" => 2 ) )->execute ();
-				X_Base::getInstance ()->insert_into ( 'content_categories', array ("idContent" => $content_id, "idCategories" => X_Base::getInstance ()->last_insert_id () ) )->execute ();
+				X_Base::getInstance ()->insert_ignore_into ( 'categories', array ("Name" => $tag, "Slug" => Functions::slug ( $tag ), "Type" => 2 ) )->execute ();
+				X_Base::getInstance ()->insert_ignore_into ( 'content_categories', array ("idContent" => $content_id, "idCategories" => X_Base::getInstance ()->last_insert_id () ) )->execute ();
 			}
 		}
 	}
 	
 	static function process_cats($cats, $content_id) {
 		foreach ( $cats as $tag ) {
-			X_Base::getInstance ()->insert_into ( 'content_categories', array ("idContent" => $content_id, "idCategories" => $tag ) )->execute ();
+			X_Base::getInstance ()->insert_ignore_into ( 'content_categories', array ("idContent" => $content_id, "idCategories" => $tag ) )->execute ();
 		}
 	}
 	

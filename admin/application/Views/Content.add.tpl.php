@@ -89,6 +89,9 @@
 						</select> <a href="#" id="save_content_visibility"><?= ucwords($lang['save']);?></a>
 					</div>
 				</div>
+				<div>
+					<input type="checkbox" name="content_featured" id="content_featured" value="1"> <span><?= ucwords($lang['featured']);?></span>
+				</div>
 				<button class="yellow icon i_presentation"><?=ucwords($lang['preview']);?></button>
 				<button class="red small icon i_cross"><?=ucwords($lang['move_to_trash']);?></button>
 				<button class="blue big icon i_tick" id="save"><?=ucwords($lang['save']);?></button>
@@ -132,11 +135,14 @@ $(document).ready(function() {
 				      console.log( 'Success', data );
 				    }
 				    $('#categories').append('<input type="checkbox" class="checkbox" id="' + data.Slug + '" name="cats[]" value="' + data.idCategories + '"> <span>' + data.Name + '</span>');
-				    $('#new_category').attr("disabled", "disabled");
-					$('#add_category').show();
 					//todo: Show message
+				  },
+				  error: function(jqXHR, textStatus, errorThrown) { //TODO:!
+					  alert(textStatus + '  \n' + errorThrown);
 				  }
 				});
+			$('#new_category').attr("disabled", "disabled");
+			$('#add_category').show();
 		});
 	});
 	/*CAT END----------------------------------------------------------*/
@@ -167,7 +173,8 @@ $(document).ready(function() {
 			e.preventDefault();
 			$('#content_type_').html($('#content_types :selected').html());
 			$('#change_content_type_').hide();
-			$('#change_content_type').show($('#content_types').val());
+			$('#change_content_type').show();
+			$('#content_type').val($('#content_types').val());
 		});
 	});
 	$('#change_content_visibility').click(function(e){
@@ -180,7 +187,8 @@ $(document).ready(function() {
 			e.preventDefault();
 			$('#content_visibility_').html($('#content_visibilities :selected').html());
 			$('#change_content_visibility_').hide();
-			$('#change_content_visibility').show($('#content_visibilities').val());
+			$('#change_content_visibility').show();
+			$('#content_visibility').val($('#content_visibilities').val());
 		});
 	});
 	/*TOGGLES END----------------------------------------------------------*/
@@ -252,7 +260,7 @@ function showResponse(responseText, statusText, xhr, $form)  {
     // is the json data object returned by the server 
  
     alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
-    //window.location = "<?= site_url();?>/admin/Content/update/" + responseText; 
+    window.location = "<?= site_url();?>/admin/Content/edit/" + responseText; 
 } 
 /*AJAXFORM END-------------------------------------------------------------*/
 </script>

@@ -35,9 +35,9 @@ function __autoload($class) {
 	                                                                                   // classes
 		require_once ROOT . DS . APPS . DS . 'library' . DS . $class . '.php';
 		return;
-	} elseif (file_exists ( ROOT . DS . APPS . DS . 'Models' . DS . $class . '.model.php' )) { // Model
+	} elseif (file_exists ( ROOT . DS . APPS . DS . 'Models' . DS . $class . '.php' )) { // Model
 	                                                                                        // classes
-		require_once ROOT . DS . APPS . DS . 'Models' . DS . $class . '.model.php';
+		require_once ROOT . DS . APPS . DS . 'Models' . DS . $class . '.php';
 		return;
 	} else {
 		return FALSE;

@@ -1,6 +1,6 @@
 <?php
 define ( 'DEVELOPMENT_ENVIRONMENT', TRUE ); // !important
-define ( 'ABS', 'http://localhost/store1212/2' ); // without backslash at the end
+define ( 'ABS', 'http://localhost/active/store1212/2' ); // without backslash at the end
                                           // //!important //Change in htdocs
                                           // RewriteBase
                                           

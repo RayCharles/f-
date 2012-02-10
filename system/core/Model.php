@@ -1,12 +1,15 @@
 <?php
-class Model {
+abstract class Model {
 	
 	protected static $instance;
 	protected $db;
 	
 	public function __construct() {
 		$this->db = X_Base::getInstance ();
+		$this->init();
 	}
+	
+	protected abstract function init();
 	// public static function getInstance() {
 	//
 	// if (NULL === self::$instance) {
